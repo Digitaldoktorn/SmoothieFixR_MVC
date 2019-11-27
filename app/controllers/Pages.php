@@ -9,7 +9,7 @@ class Pages extends Controller
 
         $data = [
             'title' => 'SmoothieFixR',
-            'description' => 'Webbapplikation för att skapa och spara smoothierecept med utgångspunkt från vettig näringslära.'
+            'description' => 'Skapa dina smoothierecept med utgångspunkt från vettig näringslära.'
         ];
 
         $this->view('pages/index', $data);
@@ -23,5 +23,15 @@ class Pages extends Controller
         ];
 
         $this->view('pages/about', $data);
+    }
+
+    public function test()
+    {
+        $data = [
+            'title' => 'Test',
+            'description' => 'testar'
+        ];
+
+        $this->view('pages/test', $data);
     }
 }
