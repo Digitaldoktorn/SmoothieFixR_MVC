@@ -15,7 +15,8 @@
                     <ul class="menu">
                         <li class="active"><a href="<?php echo URLROOT; ?>">Hem</a></li>
                         <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/pages/about">Om SmoothieFixR</a></li>
-                        <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/pages/test">Test</a></li>
+                        <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/register">Registrera</a></li>
+                        <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
                     </ul>
                 </nav>
             </div>
