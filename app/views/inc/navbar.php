@@ -13,10 +13,15 @@
                     <label for="drop" class="toggle toogle-2">Menu</label>
                     <input type="checkbox" id="drop" />
                     <ul class="menu">
+
                         <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>">Hem</a></li>
                         <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/pages/about">Om SmoothieFixR</a></li>
-                        <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/register">Registrera</a></li>
-                        <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
+                        <?php if (isset($_SESSION['user_id'])) : ?>
+                            <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/logout">Logga ut</a></li>
+                        <?php else : ?>
+                            <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/register">Registrera</a></li>
+                            <li class="mx-lg-4 mx-md-3 my-md-0 my-2"><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
             </div>
