@@ -8,11 +8,16 @@ class Recipes extends Controller
         if (!isLoggedIn()) {
             redirect('users/login');
         }
+
+        $this->recipeModel = $this->model('Recipe');
     }
 
     public function index()
     {
-        $data = [];
+        $recipes = $this->recipeModel->getRecipes();
+        $data = [
+            'recipes' => $recipes
+        ];
 
         $this->view('recipes/index', $data);
     }
