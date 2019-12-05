@@ -25,4 +25,19 @@ class Recipe
 
         return $results;
     }
+
+    public function addRecipe($data)
+    {
+        $this->db->query('INSERT INTO recipes (title, user_id) VALUES(:title, :user_id)');
+        // Bind values
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':user_id', $data['user_id']);
+
+        // Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

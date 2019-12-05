@@ -1,8 +1,6 @@
 <?php
 class Recipes extends Controller
 {
-
-    // To have the redirect in the constuctor will redirect user no matter which method you use, even the index. If you want guests to be able to access index, don't put this redirect in the constructor. Then you only need to put it in the methods that need to be protected.
     public function __construct()
     {
         if (!isLoggedIn()) {
@@ -14,11 +12,53 @@ class Recipes extends Controller
 
     public function index()
     {
+        // Get recipes
         $recipes = $this->recipeModel->getRecipes();
+
         $data = [
             'recipes' => $recipes
         ];
 
         $this->view('recipes/index', $data);
+    }
+
+    public function add()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sanitize POST array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'title' => trim($_POST['title']),
+                'user_id' => $_SESSION['user_id'],
+                'title_err' => ''
+            ];
+
+            // Validate data
+            if (empty($data['title'])) {
+                $data['title_err'] = 'Please enter title';
+            }
+
+
+            // Make sure no errors
+            if (empty($data['title_err'])) {
+                // Validated
+                if ($this->recipeModel->addRecipe($data)) {
+                    flash('recipe_message', 'Recept skapat!');
+                    redirect('recipes');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+                $this->view('recipes/add', $data);
+            }
+        } else {
+            $data = [
+                'title' => ''
+            ];
+
+            $this->view('recipes/add', $data);
+        }
     }
 }
