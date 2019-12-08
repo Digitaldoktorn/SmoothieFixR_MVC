@@ -8,6 +8,7 @@ class Recipes extends Controller
         }
 
         $this->recipeModel = $this->model('Recipe');
+        $this->userModel = $this->model('User');
     }
 
     public function index()
@@ -30,24 +31,29 @@ class Recipes extends Controller
 
             $data = [
                 'title' => trim($_POST['title']),
+                'fruits' => $_POST['fruits'],
                 'user_id' => $_SESSION['user_id'],
-                'title_err' => ''
+                'title_err' => '',
+                'fruits_err' => ''
             ];
 
             // Validate data
             if (empty($data['title'])) {
-                $data['title_err'] = 'Please enter title';
+                $data['title_err'] = 'Skriv in titel';
+            }
+            if (empty($data['fruits'])) {
+                $data['fruits_err'] = 'Välj frukt';
             }
 
 
             // Make sure no errors
-            if (empty($data['title_err'])) {
-                // Validated
+            if (empty($data['title_err']) && empty($data['fruits_err'])) {
+                // die('SUCCESS');
                 if ($this->recipeModel->addRecipe($data)) {
                     flash('recipe_message', 'Recept skapat!');
                     redirect('recipes');
                 } else {
-                    die('Something went wrong');
+                    die('Något gick snett');
                 }
             } else {
                 // Load view with errors
@@ -55,10 +61,24 @@ class Recipes extends Controller
             }
         } else {
             $data = [
-                'title' => ''
+                'title' => '',
+                'fruits' => ''
             ];
 
             $this->view('recipes/add', $data);
         }
+    }
+
+    public function show($id)
+    {
+        $recipe = $this->recipeModel->getRecipeById($id);
+        $user = $this->userModel->getUserById($recipe->user_id);
+
+        $data = [
+            'recipe' => $recipe,
+            'user' => $user
+        ];
+
+        $this->view('recipe/show', $data);
     }
 }

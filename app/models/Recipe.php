@@ -28,10 +28,11 @@ class Recipe
 
     public function addRecipe($data)
     {
-        $this->db->query('INSERT INTO recipes (title, user_id) VALUES(:title, :user_id)');
+        $this->db->query('INSERT INTO recipes (title, user_id, fruits) VALUES(:title, :user_id, :fruits)');
         // Bind values
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':fruits', $data['fruits']);
 
         // Execute
         if ($this->db->execute()) {
@@ -39,5 +40,15 @@ class Recipe
         } else {
             return false;
         }
+    }
+
+    public function getRecipeById($id)
+    {
+        $this->db->query('SELECT * FROM recipes WHERE id = :id');
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
     }
 }

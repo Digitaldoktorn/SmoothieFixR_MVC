@@ -12,6 +12,7 @@
     <div class="card card-body mb-3">
         <h4 class="card-title"><?php echo $recipe->title; ?></h4>
         <div class="bg-light p-2 mb-3">Written by <?php echo $recipe->name; ?> on <?php echo $recipe->recipeCreated; ?></div>
+        <p><?php echo $recipe->fruits; ?></p>
         <a href="<?php echo URLROOT; ?>/recipes/show/<?php echo $recipe->recipeId; ?>" class="btn btn-dark">More</a>
 
     </div>

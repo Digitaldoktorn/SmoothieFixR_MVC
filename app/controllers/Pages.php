@@ -27,14 +27,4 @@ class Pages extends Controller
 
         $this->view('pages/about', $data);
     }
-
-    public function test()
-    {
-        $data = [
-            'title' => 'Test',
-            'description' => 'testar'
-        ];
-
-        $this->view('pages/test', $data);
-    }
 }
