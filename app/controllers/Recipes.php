@@ -31,7 +31,7 @@ class Recipes extends Controller
 
             $data = [
                 'title' => trim($_POST['title']),
-                'fruits' => $_POST['fruits'],
+                'fruits' => $_POST['fruits'][0],
                 'user_id' => $_SESSION['user_id'],
                 'title_err' => '',
                 'fruits_err' => ''

@@ -2,6 +2,8 @@
 
 
 <a href="<?php echo URLROOT; ?>/recipes" class="btn btn-light">Tillbaka</a>
+
+
 <div class="card card-body bg-light mt-5">
     <h2>Skapa recept</h2>
     <form action="<?php echo URLROOT; ?>/recipes/add" method="post">
@@ -22,8 +24,7 @@
                 <input type="checkbox" name="fruits[]" value="<?php echo $data['fruits']; ?> Citron"> Citron
             </label>
         </div>
-        <?php $fruits = $data['fruits']; ?>
-        <?php print_r($fruits); ?>
+
         <input type="submit" class="btn btn-success" value="Submit">
     </form>
 </div>
